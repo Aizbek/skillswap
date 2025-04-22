@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSwap</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #e0f7ff, #b3e5fc);
+      color: #0a0a0a;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .navbar {
+      width: 100%;
+      padding: 20px 40px;
+      text-align: right;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #005fa3;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #004a80;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #005fa3;
+    }
+
+    .how-it-works {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .how-it-works h2 {
+      text-align: center;
+      color: #005fa3;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .step {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 25px;
+      flex: 1 1 250px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+    }
+
+    .step h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #003f66;
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .task-form {
+      background: white;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .task-form h2 {
+      text-align: center;
+      color: #005fa3;
+      margin-bottom: 20px;
+    }
+
+    .task-form .message {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .task-form input,
+    .task-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .task-form button {
+      width: 100%;
+      background-color: #007acc;
+      color: white;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .task-form button:hover {
+      background-color: #005fa3;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #005fa3;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">SkillSwap</div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Find Help. Offer Help. Swap Skills.</h1>
+    <p>
+      SkillSwap is a platform for posting tasks with a budget — from graphic design to tutoring — and getting them completed quickly and fairly.
+    </p>
+    <button onclick="document.querySelector('.task-form').scrollIntoView({ behavior: 'smooth' })">Get Started</button>
+  </section>
+
+  <!-- How it Works Section -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Post Your Task</h3>
+        <p>Describe what you need and set your budget. Be specific so helpers know exactly what's expected.</p>
+      </div>
+      <div class="step">
+        <h3>2. Get Matched</h3>
+        <p>People browse tasks and apply to help. You choose the best fit based on reviews and profiles.</p>
+      </div>
+      <div class="step">
+        <h3>3. Get It Done</h3>
+        <p>Stay connected, track progress, and release payment once the task is complete and you’re satisfied.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Task Posting Section -->
+  <section class="task-form">
+    <h2>Post a Task</h2>
+    <div class="message" id="formMessage"></div>
+    <form id="taskForm">
+      <input type="text" id="title" placeholder="Task Title" required />
+      <textarea id="description" placeholder="Describe your task..." rows="5" required></textarea>
+      <input type="number" id="budget" placeholder="Your Budget ($)" required />
+      <input type="text" id="contact" placeholder="Your Contact Info (email or username)" required />
+      <button type="submit">Post Task</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 SkillSwap. All rights reserved.
+  </div>
+
+  <script>
+    document.getElementById('taskForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const budget = document.getElementById('budget').value.trim();
+      const contact = document.getElementById('contact').value.trim();
+      const messageDiv = document.getElementById('formMessage');
+      if (!title || !description || !budget || !contact) {
+        messageDiv.textContent = 'Пожалуйста, заполните все поля.';
+        messageDiv.style.color = 'red';
+        return;
+      }
+      messageDiv.textContent = 'Задача успешно размещена!';
+      messageDiv.style.color = 'green';
+      document.getElementById('taskForm').reset();
+    });
+  </script>
+</body>
+</html>
