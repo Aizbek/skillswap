@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillSwap – Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f1f5f9;
+    }
+    .chat-bubble {
+      max-width: 70%;
+      padding: 12px 18px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    .sender {
+      background-color: #4C51BF;
+      color: white;
+      align-self: flex-end;
+    }
+    .receiver {
+      background-color: #e5e7eb;
+      color: #1f2937;
+      align-self: flex-start;
+    }
+    .header {
+      background-color: #ffffff;
+      padding: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      font-size: 1.8rem;
+      color: #4C51BF;
+      font-weight: bold;
+    }
+    .header a {
+      color: #4C51BF;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+    }
+    .header a:hover {
+      color: #3B42D1;
+    }
+    .chat-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      min-height: 60vh;
+    }
+    .input-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .input-container input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease-in-out;
+    }
+    .input-container input:focus {
+      border-color: #4C51BF;
+    }
+    .send-button {
+      background-color: #4C51BF;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .send-button:hover {
+      background-color: #3B42D1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>SkillSwap Chat</h1>
+    <a href="ac.html">⬅ Back to Tasks</a>
+  </header>
+
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <!-- Chat Messages -->
+    <div id="chatBox" class="flex flex-col space-y-4 overflow-y-auto mb-4 h-[60vh] p-4">
+      <!-- Chat history (will be dynamically added here) -->
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-container">
+      <input id="messageInput" type="text" placeholder="Type a message..." class="focus:ring-2 focus:ring-indigo-400" />
+      <button onclick="sendMessage()" class="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    let isCustomer = true; // Start with the customer (set dynamically based on the user role)
+
+    // Function to handle sending a message
+    function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const chatBox = document.getElementById("chatBox");
+      const message = input.value.trim();
+
+      if (message !== "") {
+        const bubble = document.createElement("div");
+        bubble.className = isCustomer ? "chat-bubble sender" : "chat-bubble receiver";
+        bubble.textContent = message;
+        chatBox.appendChild(bubble);
+        input.value = "";
+
+        // Switch roles after each message
+        isCustomer = !isCustomer;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+  </script>
+
+</body>
+</html>
