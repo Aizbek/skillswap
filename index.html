@@ -2,237 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillSwap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillSwap – Get Tasks Done, Your Way</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     body {
-      background: linear-gradient(to right, #e0f7ff, #b3e5fc);
-      color: #0a0a0a;
-      min-height: 100vh;
-      position: relative;
+      font-family: 'Poppins', sans-serif;
     }
-
-    .navbar {
-      width: 100%;
-      padding: 20px 40px;
-      text-align: right;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #005fa3;
+    .card {
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      background-color: #fff;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 100px 20px 60px;
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
     }
-
-    .hero h1 {
+    .btn {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #3b82f6;
+      transform: scale(1.05);
+    }
+    .header-text {
       font-size: 3rem;
-      margin-bottom: 20px;
-      color: #004a80;
+      font-weight: 800;
+      color: #2d3748;
     }
-
-    .hero p {
-      font-size: 1.5rem;
-      max-width: 600px;
-      margin-bottom: 30px;
+    .sub-header {
+      color: #4a5568;
+      font-size: 1.125rem;
+      margin-bottom: 16px;
     }
-
-    .hero button {
-      padding: 12px 30px;
-      font-size: 1rem;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+    .footer-text {
+      font-size: 0.875rem;
+      color: #e2e8f0;
     }
-
-    .hero button:hover {
-      background-color: #005fa3;
+    .section-padding {
+      padding: 80px 24px;
     }
-
-    .how-it-works {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 60px 20px;
+    .bg-overlay {
+      background: linear-gradient(145deg, rgba(0, 135, 255, 0.8), rgba(255, 255, 255, 0.6));
+      filter: blur(5px);
     }
-
-    .how-it-works h2 {
-      text-align: center;
-      color: #005fa3;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+    .section-content {
+      z-index: 10;
     }
-
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 20px;
+    .btn-primary {
+      background-color: #4C51BF;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
-
-    .step {
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 15px;
-      padding: 25px;
-      flex: 1 1 250px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .step:hover {
-      transform: translateY(-5px);
-    }
-
-    .step h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      color: #003f66;
-    }
-
-    .step p {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .task-form {
-      background: white;
-      border-radius: 20px;
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    .task-form h2 {
-      text-align: center;
-      color: #005fa3;
-      margin-bottom: 20px;
-    }
-
-    .task-form .message {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
-
-    .task-form input,
-    .task-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .task-form button {
-      width: 100%;
-      background-color: #007acc;
-      color: white;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .task-form button:hover {
-      background-color: #005fa3;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: #005fa3;
-      color: white;
-      margin-top: 40px;
+    .btn-primary:hover {
+      background-color: #3b42d1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
   </style>
 </head>
-<body>
-  <!-- Navbar -->
-  <div class="navbar">SkillSwap</div>
+<body class="text-gray-900 bg-gradient-to-r from-blue-400 to-white">
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Find Help. Offer Help. Swap Skills.</h1>
-    <p>
-      SkillSwap is a platform for posting tasks with a budget — from graphic design to tutoring — and getting them completed quickly and fairly.
-    </p>
-    <button onclick="document.querySelector('.task-form').scrollIntoView({ behavior: 'smooth' })">Get Started</button>
+  <!-- NAVBAR -->
+  <header class="w-full px-6 py-4 bg-opacity-20 backdrop-blur-sm fixed top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-center items-center">
+      <h1 class="text-3xl font-extrabold text-indigo-600 tracking-tight">SkillSwap</h1>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="min-h-screen flex items-center justify-center px-6 pt-32 text-center relative">
+    <div class="absolute inset-0 bg-overlay"></div>
+    <div class="section-content max-w-2xl">
+      <h2 class="header-text leading-tight mb-6">Post Tasks. <span class="text-indigo-500">Set Budgets.</span><br> Get Work Done Fast.</h2>
+      <p class="sub-header mb-8">SkillSwap connects your needs with skilled people who accept your price. No haggling. No middlemen.</p>
+      <a href="ac.html" class="btn-primary">Post Your Task</a>
+
+    </div>
   </section>
 
-  <!-- How it Works Section -->
-  <section class="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>1. Post Your Task</h3>
-        <p>Describe what you need and set your budget. Be specific so helpers know exactly what's expected.</p>
+  <!-- HOW IT WORKS SECTION -->
+  <section class="section-padding bg-gradient-to-r from-blue-400 to-blue-200">
+    <div class="max-w-6xl mx-auto text-center mb-16">
+      <h3 class="text-4xl font-bold mb-4 text-gray-800">How SkillSwap Works</h3>
+      <p class="text-gray-700">Just 3 simple steps to get anything done</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div class="card text-gray-800 shadow-xl">
+        <h4 class="text-xl font-semibold mb-2">1. Post a Task</h4>
+        <p>Write what you need, when you need it, and how much you're willing to pay.</p>
       </div>
-      <div class="step">
-        <h3>2. Get Matched</h3>
-        <p>People browse tasks and apply to help. You choose the best fit based on reviews and profiles.</p>
+      <div class="card text-gray-800 shadow-xl">
+        <h4 class="text-xl font-semibold mb-2">2. Get Offers</h4>
+        <p>Skilled people browse your task and apply if they like your budget and can do it.</p>
       </div>
-      <div class="step">
-        <h3>3. Get It Done</h3>
-        <p>Stay connected, track progress, and release payment once the task is complete and you’re satisfied.</p>
+      <div class="card text-gray-800 shadow-xl">
+        <h4 class="text-xl font-semibold mb-2">3. Choose & Pay</h4>
+        <p>Pick the right person. Pay only when you're satisfied with the result.</p>
       </div>
     </div>
   </section>
 
-  <!-- Task Posting Section -->
-  <section class="task-form">
-    <h2>Post a Task</h2>
-    <div class="message" id="formMessage"></div>
-    <form id="taskForm">
-      <input type="text" id="title" placeholder="Task Title" required />
-      <textarea id="description" placeholder="Describe your task..." rows="5" required></textarea>
-      <input type="number" id="budget" placeholder="Your Budget ($)" required />
-      <input type="text" id="contact" placeholder="Your Contact Info (email or username)" required />
-      <button type="submit">Post Task</button>
-    </form>
-  </section>
+  <!-- FOOTER -->
+  <footer class="py-10 text-center text-sm text-gray-400 bg-[#0f172a]">
+    <p class="footer-text">Contact: <a href="mailto:ibroximjurayev1980@gmail.com" class="text-indigo-300 hover:underline">ibroximjurayev1980@gmail.com</a></p>
+    <p class="footer-text">&copy; 2025 SkillSwap. Built with vision.</p>
+  </footer>
 
-  <!-- Footer -->
-  <div class="footer">
-    &copy; 2025 SkillSwap. All rights reserved.
-  </div>
-
-  <script>
-    document.getElementById('taskForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const title = document.getElementById('title').value.trim();
-      const description = document.getElementById('description').value.trim();
-      const budget = document.getElementById('budget').value.trim();
-      const contact = document.getElementById('contact').value.trim();
-      const messageDiv = document.getElementById('formMessage');
-      if (!title || !description || !budget || !contact) {
-        messageDiv.textContent = 'Пожалуйста, заполните все поля.';
-        messageDiv.style.color = 'red';
-        return;
-      }
-      messageDiv.textContent = 'Задача успешно размещена!';
-      messageDiv.style.color = 'green';
-      document.getElementById('taskForm').reset();
-    });
-  </script>
 </body>
 </html>
+
