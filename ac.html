@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillSwap – Post Tasks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 24px;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+    .profile-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #4C51BF;
+      margin-right: 10px;
+      display: inline-block;
+    }
+    .task-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .task-info span {
+      font-weight: bold;
+      color: #333;
+    }
+    .task-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    .task-body {
+      color: #555;
+      margin-top: 12px;
+    }
+    .task-btn {
+      background-color: #4C51BF;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .task-btn:hover {
+      background-color: #3b42d1;
+    }
+    .form-section {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+    }
+    .input-field {
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 16px;
+      color: black; /* Ensures the text is black */
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #4C51BF;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+    }
+    .discussion-link {
+      color: #4C51BF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4C51BF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with SkillSwap Logo -->
+  <header class="header">
+    <div class="logo">SkillSwap</div>
+  </header>
+
+  <!-- Task Posting Form -->
+  <section class="gradient-bg text-white py-16">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Post Your Task</h2>
+      <p class="text-lg mb-6">Provide details, set your budget, and post it. Get offers from skilled professionals!</p>
+      
+      <div class="form-section">
+        <input type="text" class="input-field" placeholder="Task Title" id="task-title" />
+        <textarea class="input-field" placeholder="Describe your task..." rows="4" id="task-description"></textarea>
+        <input type="number" class="input-field" placeholder="Your Budget ($)" id="task-budget" />
+        <button class="task-btn" onclick="postTask()">Post a Task</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Displaying Tasks -->
+  <section class="max-w-4xl mx-auto py-16" id="task-list">
+    <!-- Tasks will be dynamically inserted here -->
+  </section>
+
+  <script>
+    let tasks = []; // This will store all posted tasks.
+
+    function postTask() {
+      let title = document.getElementById("task-title").value;
+      let description = document.getElementById("task-description").value;
+      let budget = document.getElementById("task-budget").value;
+      
+      if (!title || !description || !budget) {
+        alert("Please fill out all fields!");
+        return;
+      }
+
+      // Create a new task object
+      const newTask = {
+        title: title,
+        description: description,
+        budget: budget,
+        user: "User123" // You can change this to dynamic user data if needed
+      };
+
+      tasks.push(newTask); // Add the new task to the tasks array
+
+      // Clear the form
+      document.getElementById("task-title").value = "";
+      document.getElementById("task-description").value = "";
+      document.getElementById("task-budget").value = "";
+
+      displayTasks(); // Update the displayed tasks
+    }
+
+    // Function to display all tasks
+    function displayTasks() {
+      const taskList = document.getElementById("task-list");
+      taskList.innerHTML = ""; // Clear the current task list
+
+      tasks.forEach(task => {
+        const taskCard = `
+          <div class="card">
+            <div class="task-info">
+              <div class="profile-circle"></div>
+              <span>${task.user}</span>
+            </div>
+            <div class="task-title">${task.title}</div>
+            <p class="task-body">${task.description}</p>
+            <p class="task-body"><strong>Budget:</strong> $${task.budget}</p>
+            <a href="acc.html" class="block text-center mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition">
+              💬 Discuss & Offer Help
+            </a>
+          </div>
+        `;
+        taskList.innerHTML += taskCard;
+      });
+    }
+  </script>
+
+</body>
+</html>
